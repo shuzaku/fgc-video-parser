@@ -1,7 +1,9 @@
 from flask import Flask, request, jsonify
 from downloader import download_youtube_video
 from inference import run_inference_on_video
+import os
 
+PORT = int(os.environ.get("PORT", 5000))
 app = Flask(__name__)
 
 @app.route('/analyze', methods=['POST'])
@@ -27,4 +29,4 @@ def analyze_video():
     return jsonify({"results": results})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=PORT)
