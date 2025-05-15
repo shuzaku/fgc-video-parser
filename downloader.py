@@ -1,9 +1,25 @@
 import yt_dlp
+import os
+import base64
+
+os.environ.get("YT_COOKIES_BASE64")
+
+def write_cookies_file():
+    cookies_base64 = os.environ.get("YT_COOKIES_BASE64")
+    if not cookies_base64:
+        raise ValueError("YT_COOKIES_BASE64 environment variable not set")
+
+    cookies = base64.b64decode(cookies_base64).decode("utf-8")
+    with open("cookies.txt", "w") as f:
+        f.write(cookies)
 
 def download_youtube_video(url, filename="video.mp4"):
+    write_cookies_file()
+
     ydl_opts = {
         'outtmpl': filename,
         'format': 'mp4[ext=mp4][acodec!=none][vcodec!=none]/best',
+        'cookies': 'cookies.txt',
         'quiet': True,
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
