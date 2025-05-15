@@ -23,6 +23,7 @@ def download_youtube_video(url, filename="video.mp4"):
         'cookies': 'cookies.txt',
         'quiet': True,
     }
+    print("COOKIES FILE EXISTS?", os.path.exists("cookies.txt"))
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
     return filename
