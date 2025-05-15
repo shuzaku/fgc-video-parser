@@ -6,14 +6,16 @@ from utils import iou, get_center_x
 from datetime import datetime
 import concurrent.futures
 from roboflow import Roboflow
+from dotenv import load_dotenv
+load_dotenv()
 
 ROBOFLOW_API_KEY = os.environ.get("ROBOFLOW_API_KEY")
 PROJECT_NAME = os.environ.get("PROJECT_NAME")
-PROJECT_VERSION = os.environ.get("PROJECT_VERSION")
-DEDUPLICATION_TIME_THRESHOLD = os.environ.get("DEDUPLICATION_TIME_THRESHOLD")
-IOU_THRESHOLD = os.environ.get("IOU_THRESHOLD")
-FRAME_WIDTH = os.environ.get("FRAME_WIDTH")
-FRAME_HEIGHT = os.environ.get("FRAME_HEIGHT")
+PROJECT_VERSION = int(os.environ.get("PROJECT_VERSION", 1))
+DEDUPLICATION_TIME_THRESHOLD = float(os.environ.get("DEDUPLICATION_TIME_THRESHOLD", 2.0))
+IOU_THRESHOLD = float(os.environ.get("IOU_THRESHOLD", 0.5))
+FRAME_WIDTH = int(os.environ.get("FRAME_WIDTH", 640))
+FRAME_HEIGHT = int(os.environ.get("FRAME_HEIGHT", 640))
 
 rf = Roboflow(api_key=ROBOFLOW_API_KEY)
 model = rf.workspace().project(PROJECT_NAME).version(PROJECT_VERSION).model
