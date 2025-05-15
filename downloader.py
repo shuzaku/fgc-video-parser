@@ -9,7 +9,7 @@ def write_cookies_file():
     if not cookies_base64:
         raise ValueError("YT_COOKIES_BASE64 environment variable not set")
 
-    cookies = base64.b64decode(cookies_base64).decode("utf-8")
+    cookies = base64.b64decode(cookies_base64)
     with open("cookies.txt", "w") as f:
         f.write(cookies)
     print("[INFO] cookies.txt written")
