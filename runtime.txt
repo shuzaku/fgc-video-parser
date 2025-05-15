@@ -1,1 +1,5 @@
-python-3.12.0
+echo "3.12" > .python-version
+rm runtime.txt
+git add .python-version
+git rm runtime.txt
+git commit -m "Use .python-version instead of runtime.txt"
