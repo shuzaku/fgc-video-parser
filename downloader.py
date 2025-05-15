@@ -12,6 +12,7 @@ def write_cookies_file():
     cookies = base64.b64decode(cookies_base64).decode("utf-8")
     with open("cookies.txt", "w") as f:
         f.write(cookies)
+    print("[INFO] cookies.txt written")
 
 def download_youtube_video(url, filename="video.mp4"):
     write_cookies_file()
