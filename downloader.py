@@ -10,7 +10,7 @@ def write_cookies_file():
         raise ValueError("YT_COOKIES_BASE64 environment variable not set")
 
     cookies = base64.b64decode(cookies_base64)
-    with open("cookies.txt", "w") as f:
+    with open("cookies.txt", "wb") as f:
         f.write(cookies)
     print("[INFO] cookies.txt written")
 
@@ -23,10 +23,6 @@ def download_youtube_video(url, filename="video.mp4"):
         'cookies': 'cookies.txt',
         'quiet': True,
     }
-    print("COOKIES FILE EXISTS?", os.path.exists("cookies.txt"))
-
-    with open("cookies.txt", "r") as f:
-        print(f.read()[:500])  # print first 500 characters for inspection
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
