@@ -2,11 +2,18 @@ import cv2
 import os
 import time
 import json
-from config import ROBOFLOW_API_KEY, PROJECT_NAME, PROJECT_VERSION, DEDUPLICATION_TIME_THRESHOLD, IOU_THRESHOLD
 from utils import iou, get_center_x
 from datetime import datetime
 import concurrent.futures
 from roboflow import Roboflow
+
+ROBOFLOW_API_KEY = os.environ.get("ROBOFLOW_API_KEY")
+PROJECT_NAME = os.environ.get("PROJECT_NAME")
+PROJECT_VERSION = os.environ.get("PROJECT_VERSION")
+DEDUPLICATION_TIME_THRESHOLD = os.environ.get("DEDUPLICATION_TIME_THRESHOLD")
+IOU_THRESHOLD = os.environ.get("IOU_THRESHOLD")
+FRAME_WIDTH = os.environ.get("FRAME_WIDTH")
+FRAME_HEIGHT = os.environ.get("FRAME_HEIGHT")
 
 rf = Roboflow(api_key=ROBOFLOW_API_KEY)
 model = rf.workspace().project(PROJECT_NAME).version(PROJECT_VERSION).model
