@@ -1,0 +1,5 @@
+/output/
+/inference_results/
+/config/
+video.mp4
+config.py
